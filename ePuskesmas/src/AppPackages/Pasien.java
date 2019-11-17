@@ -12,14 +12,14 @@ import java.io.*;
  */
 public class Pasien implements Serializable
 {     
-    private String namaPasien;
-    private String alamatPasien;
-    private String tempatLahir;
-    private String nomorTeleponPasien;
-    private char umurPasien;
-    private int jkPasien;
-    private int tanggalHariLahir;
-    private int tanggalBulanLahir;
-    private int tanggalTahunLahir;
+    public String namaPasien;
+    public String alamatPasien;
+    public String tempatLahir;
+    public String nomorTeleponPasien;
+    public char umurPasien;
+    public int jkPasien;
+    public int tanggalHariLahir;
+    public int tanggalBulanLahir;
+    public int tanggalTahunLahir;
 
 }

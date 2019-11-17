@@ -10,7 +10,7 @@ package AppPackages;
  * @author Administrator
  */
 public class Kasir {
-    private double totalHarga;
-    private double itemHarga;
-    private double cetakAll;
+    public double totalHarga;
+    public double itemHarga;
+    public double cetakAll;
 }

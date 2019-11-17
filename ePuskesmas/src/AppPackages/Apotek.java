@@ -10,6 +10,6 @@ package AppPackages;
  * @author Administrator
  */
 public class Apotek {
-    private char NamaObat;
-    private char hargaObat;
+    public char NamaObat;
+    public char hargaObat;
 }
