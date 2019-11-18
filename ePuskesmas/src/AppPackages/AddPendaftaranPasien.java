@@ -46,7 +46,8 @@ public class AddPendaftaranPasien extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jComboBox4 = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Form Pendaftaran Pasien Baru");
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
