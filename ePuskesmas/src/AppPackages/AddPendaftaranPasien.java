@@ -6,23 +6,27 @@
 package AppPackages;
 import javax.swing.*;
 import java.util.*;
+import java.io.*;
 
  /*
  *
  * @author Master
  */
 public class AddPendaftaranPasien extends javax.swing.JFrame {
+    
+    ArrayList<Pasien> namaPasien;
  
     /**
      * Creates new form AddPendaftaranPasien
      */
     public AddPendaftaranPasien() {
         initComponents();
-    }
-    public void ArrayGenList()
-    {
+        
+        namaPasien = new ArrayList<Pasien>();
+        
         
     }
+   
     
     /**
      * This method is called from within the constructor to initialize the form.
