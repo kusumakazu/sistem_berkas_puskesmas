@@ -257,7 +257,7 @@ public class AddPendaftaranPasien extends javax.swing.JFrame {
 
     private void BKembaliPasienExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BKembaliPasienExitActionPerformed
        
-        System.exit(0); // program keluar
+       this.dispose(); // Keluar dari Form
 
     }//GEN-LAST:event_BKembaliPasienExitActionPerformed
 
