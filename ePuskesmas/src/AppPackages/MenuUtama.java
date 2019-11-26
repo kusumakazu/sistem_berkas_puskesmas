@@ -27,16 +27,40 @@ public class MenuUtama extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        BDaftarPasienMenu = new javax.swing.JButton();
+        BArsipMenu = new javax.swing.JButton();
+        BKeluarMenuExit = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         ProgramMenu = new javax.swing.JMenu();
         ExitProgram = new javax.swing.JMenuItem();
         DaftarMenu = new javax.swing.JMenu();
         RegistPasien = new javax.swing.JMenuItem();
-        RegistDokter = new javax.swing.JMenuItem();
         ArsipMenu = new javax.swing.JMenu();
+        Arsip = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ePuskesmas");
+
+        BDaftarPasienMenu.setText("PENDAFTARAN PASIEN");
+        BDaftarPasienMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BDaftarPasienMenuActionPerformed(evt);
+            }
+        });
+
+        BArsipMenu.setText("ARSIP");
+        BArsipMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BArsipMenuActionPerformed(evt);
+            }
+        });
+
+        BKeluarMenuExit.setText("KELUAR");
+        BKeluarMenuExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BKeluarMenuExitActionPerformed(evt);
+            }
+        });
 
         ProgramMenu.setText("Program");
 
@@ -60,17 +84,18 @@ public class MenuUtama extends javax.swing.JFrame {
         });
         DaftarMenu.add(RegistPasien);
 
-        RegistDokter.setText("Registrasi Dokter");
-        RegistDokter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegistDokterActionPerformed(evt);
-            }
-        });
-        DaftarMenu.add(RegistDokter);
-
         jMenuBar1.add(DaftarMenu);
 
         ArsipMenu.setText("Arsip");
+
+        Arsip.setText("Arsip");
+        Arsip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ArsipActionPerformed(evt);
+            }
+        });
+        ArsipMenu.add(Arsip);
+
         jMenuBar1.add(ArsipMenu);
 
         setJMenuBar(jMenuBar1);
@@ -79,11 +104,27 @@ public class MenuUtama extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 868, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(BDaftarPasienMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
+                .addComponent(BArsipMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(377, 377, 377)
+                .addComponent(BKeluarMenuExit, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(134, 134, 134)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BArsipMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BDaftarPasienMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(BKeluarMenuExit, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         pack();
@@ -96,13 +137,31 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void RegistPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistPasienActionPerformed
         
-        new AddPendaftaranPasien().setVisible(true);
+        new AddPendaftaranPasien().setVisible(true); // memulai instance form register pasien baru
     }//GEN-LAST:event_RegistPasienActionPerformed
 
-    private void RegistDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistDokterActionPerformed
+    private void BKeluarMenuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BKeluarMenuExitActionPerformed
+        
+        System.exit(0); //program keluar
+    }//GEN-LAST:event_BKeluarMenuExitActionPerformed
+
+    private void BArsipMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BArsipMenuActionPerformed
        
-         new AddRegistDokter().setVisible(true);
-    }//GEN-LAST:event_RegistDokterActionPerformed
+        new MenuArsip().setVisible(true); // memulai instance form Arsip
+        
+    }//GEN-LAST:event_BArsipMenuActionPerformed
+
+    private void BDaftarPasienMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDaftarPasienMenuActionPerformed
+        
+        new AddPendaftaranPasien().setVisible(true); // memulai instance form register pasien baru
+        
+    }//GEN-LAST:event_BDaftarPasienMenuActionPerformed
+
+    private void ArsipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ArsipActionPerformed
+      
+        new MenuArsip().setVisible(true); // memulai instance form Arsip
+        
+    }//GEN-LAST:event_ArsipActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,11 +199,14 @@ public class MenuUtama extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Arsip;
     private javax.swing.JMenu ArsipMenu;
+    private javax.swing.JButton BArsipMenu;
+    private javax.swing.JButton BDaftarPasienMenu;
+    private javax.swing.JButton BKeluarMenuExit;
     private javax.swing.JMenu DaftarMenu;
     private javax.swing.JMenuItem ExitProgram;
     private javax.swing.JMenu ProgramMenu;
-    private javax.swing.JMenuItem RegistDokter;
     private javax.swing.JMenuItem RegistPasien;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
