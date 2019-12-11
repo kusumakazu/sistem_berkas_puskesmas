@@ -8,25 +8,35 @@ import javax.swing.*;
 import java.util.*;
 import java.io.*;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
+
  /*
  *
  * @author Master
  */
+
 public class AddPendaftaranPasien extends javax.swing.JFrame {
+    public String namaPasien;
+    public String alamatPasien;
+    public String tempatLahir;
+    public char umurPasien;
+    public int jenisKelaminPasien;
+    public int tanggalLahirPasien;
     
-    ArrayList<Pasien> namaPasien;
- 
-    /**
-     * Creates new form AddPendaftaranPasien
-     */
+    
     public AddPendaftaranPasien() {
         initComponents();
         
-        namaPasien = new ArrayList<Pasien>();
-        
         
     }
-   
+ 
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -121,8 +131,6 @@ public class AddPendaftaranPasien extends javax.swing.JFrame {
         });
 
         jLabel3.setText("Jenis Kelamin : ");
-
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -235,19 +243,14 @@ public class AddPendaftaranPasien extends javax.swing.JFrame {
 
     private void BSubmitPasienSelesaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSubmitPasienSelesaiActionPerformed
 
-        if (TXnamaLengkap.getText().isEmpty() || TXtempatLahir.getText().isEmpty() || TXAlamat.getText().isEmpty()) // perbandingan jika teks field kosong
-        {
-            JOptionPane.showMessageDialog(null, "Masukan Input"); // memunculkan pesan error 
+        
+try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/netbeans","root","");
+            conn.createStatement().executeUpdate("insert into pasien values"+"('"+namaPasien.getText()+"','"+jenisKelaminPasien.getText()+"','"+tanggalLahirPasien.getText()+"','"+alamatPasien.getText()+"','"+tempatLahir.getText()+"','"+umurPasien.getText()+"')");
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(AddPendaftaranPasien.class.getName()).log(Level.SEVERE, null, ex);
         }
-        else
-        {
-        String namaPasien = TXnamaLengkap.getText().trim();
-        String tempatLahirPasien = TXtempatLahir.getText().trim();
-        String alamatPasien = TXAlamat.getText().trim();
-        
-        }
-        
-        
     }//GEN-LAST:event_BSubmitPasienSelesaiActionPerformed
 
     private void BKembaliPasienExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BKembaliPasienExitActionPerformed

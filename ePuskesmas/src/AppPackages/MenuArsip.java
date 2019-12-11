@@ -5,17 +5,28 @@
  */
 package AppPackages;
 
+import javax.swing.table.DefaultTableModel;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Master
  */
 public class MenuArsip extends javax.swing.JFrame {
-
+    DefaultTableModel arsipTabel;
     /**
      * Creates new form MenuArsip
      */
     public MenuArsip() {
         initComponents();
+        String []colTitle={"IDArsip","IDPasien","NamaPasien","JK","UmurPasien","TempatLahir","TanggalLahir","AlamatPasien"};
+        arsipTabel = new DefaultTableModel(colTitle,0);
+        tabelArsip.setModel(arsipTabel);
+        updateDataView();
     }
 
     /**
@@ -29,7 +40,7 @@ public class MenuArsip extends javax.swing.JFrame {
 
         BCloseFormArsip = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabelArsip = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -48,7 +59,7 @@ public class MenuArsip extends javax.swing.JFrame {
             }
         });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabelArsip.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -73,7 +84,7 @@ public class MenuArsip extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tabelArsip);
 
         jButton1.setText("Edit Tabel");
 
@@ -195,6 +206,21 @@ public class MenuArsip extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable tabelArsip;
     // End of variables declaration//GEN-END:variables
+
+    private void updateDataView() {
+            Connection conn = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/netbeans","root","");
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuArsip.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            ResultSet rs = conn.createStatement().executeQuery("Select * from crud");
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuArsip.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+    }
 }
