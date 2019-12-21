@@ -18,7 +18,7 @@ public class config {
 public void config(){
 try{
     Class.forName("com.mysql.jdbc.Driver");
-    con=DriverManager.getConnection("jdbc:mysql://localhost/db_br","root","");
+    con=DriverManager.getConnection("jdbc:mysql://localhost/pasien","root","");
     stm=con.createStatement();
 }catch(Exception e){
     JOptionPane.showMessageDialog(null,"Koneksi Gagal\n"+e.getMessage());

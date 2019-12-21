@@ -15,7 +15,6 @@ import java.sql.Statement;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 import AppPackages.config;
  /*
  *
@@ -73,7 +72,6 @@ public class AddPendaftaranPasien extends javax.swing.JFrame {
         BSubmitPasienSelesai = new javax.swing.JButton();
         BKembaliPasienExit = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        TXIDformpasien = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jComboBox5 = new javax.swing.JComboBox<>();
         TXtanggalLahir = new javax.swing.JTextField();
@@ -137,12 +135,6 @@ public class AddPendaftaranPasien extends javax.swing.JFrame {
 
         jLabel2.setText("ID -");
 
-        TXIDformpasien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TXIDformpasienActionPerformed(evt);
-            }
-        });
-
         jLabel3.setText("Jenis Kelamin : ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -152,8 +144,6 @@ public class AddPendaftaranPasien extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TXIDformpasien, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -202,9 +192,7 @@ public class AddPendaftaranPasien extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(TXIDformpasien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BKembaliPasienExit))))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -266,7 +254,7 @@ public class AddPendaftaranPasien extends javax.swing.JFrame {
         }catch(Exception e){            
             JOptionPane.showMessageDialog(null,"Tambah  DataGAGAL! " + e.getMessage());
         }
-       kosong();
+       
         }  
     }//GEN-LAST:event_BSubmitPasienSelesaiActionPerformed
 
@@ -275,10 +263,6 @@ public class AddPendaftaranPasien extends javax.swing.JFrame {
        this.dispose(); // Keluar dari Form
 
     }//GEN-LAST:event_BKembaliPasienExitActionPerformed
-
-    private void TXIDformpasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TXIDformpasienActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TXIDformpasienActionPerformed
 
     /**
      * @param args the command line arguments
@@ -324,7 +308,6 @@ public class AddPendaftaranPasien extends javax.swing.JFrame {
     private javax.swing.JLabel LtempatLahir;
     private javax.swing.JLabel LumurPasien;
     private javax.swing.JTextField TXAlamat;
-    private javax.swing.JTextField TXIDformpasien;
     private javax.swing.JTextField TXnamaLengkap;
     private javax.swing.JTextField TXtanggalLahir;
     private javax.swing.JTextField TXtempatLahir;

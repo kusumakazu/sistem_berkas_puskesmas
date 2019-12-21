@@ -47,12 +47,17 @@ private void load_table(){
         model.addColumn("Kode Barang");
         model.addColumn("Nama Barang");
         try{
-            String sql = "SELECT * FROM tb_barang";
+            String sql = "SELECT * FROM pasien";
             res=stat.executeQuery(sql);
             while(res.next()){
                 model.addRow(new Object[]{
                     res.getString(1),
-                    res.getString(2)});
+                    res.getString(2),
+                    res.getString(3),
+                    res.getString(4),
+                    res.getString(5),
+                    res.getString(6),
+                    res.getString(7)});
             }
             tableArsip.setModel(model);
         }catch(Exception e){            
