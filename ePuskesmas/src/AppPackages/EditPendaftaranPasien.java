@@ -20,7 +20,7 @@ import AppPackages.config;
  *
  * @author Master
  */
-public class AddPendaftaranPasien extends javax.swing.JFrame {
+public class EditPendaftaranPasien extends javax.swing.JFrame {
     
     Connection con;
     Statement stat;
@@ -31,7 +31,7 @@ public class AddPendaftaranPasien extends javax.swing.JFrame {
     /**
      * Creates new form AddPendaftaranPasien
      */
-    public AddPendaftaranPasien() {
+    public EditPendaftaranPasien() {
         initComponents();
         config k = new config();
         k.config();
@@ -126,7 +126,7 @@ public class AddPendaftaranPasien extends javax.swing.JFrame {
             }
         });
 
-        BSubmitPasienSelesai.setText("Submit");
+        BSubmitPasienSelesai.setText("Save");
         BSubmitPasienSelesai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BSubmitPasienSelesaiActionPerformed(evt);
@@ -342,20 +342,21 @@ public class AddPendaftaranPasien extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddPendaftaranPasien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPendaftaranPasien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddPendaftaranPasien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPendaftaranPasien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddPendaftaranPasien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPendaftaranPasien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddPendaftaranPasien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPendaftaranPasien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddPendaftaranPasien().setVisible(true);
+                new EditPendaftaranPasien().setVisible(true);
             }
         });
     }
