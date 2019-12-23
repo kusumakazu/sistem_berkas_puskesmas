@@ -43,11 +43,21 @@ Connection con;
     }
 
 private void load_table(){
-        DefaultTableModel model=new DefaultTableModel();
-        model.addColumn("Kode Barang");
-        model.addColumn("Nama Barang");
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("ID BPJS");
+        model.addColumn("Nama Pasien");
+        model.addColumn("Jenis Kelamin");
+        model.addColumn("Status");
+        model.addColumn("Umur");
+        model.addColumn("Tanggal Lahir");
+        model.addColumn("Tempat Lahir");
+        model.addColumn("NO Telepon");
+        model.addColumn("Alamat");
+        tableArsip.setModel(model);
+        
         try{
-            String sql = "SELECT * FROM pasien";
+            String sql = "SELECT * FROM pasien_tb";
             res=stat.executeQuery(sql);
             while(res.next()){
                 model.addRow(new Object[]{
@@ -57,7 +67,10 @@ private void load_table(){
                     res.getString(4),
                     res.getString(5),
                     res.getString(6),
-                    res.getString(7)});
+                    res.getString(7),
+                    res.getString(8),
+                    res.getString(9),
+                    res.getString(10)});
             }
             tableArsip.setModel(model);
         }catch(Exception e){            
@@ -72,24 +85,34 @@ private void load_table(){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        BCloseFormArsip = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        DeleteSelectedButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableArsip = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        BCloseFormArsip1 = new javax.swing.JButton();
+        ExportButton = new javax.swing.JButton();
+        ShowButton = new javax.swing.JButton();
+        LoadArsipButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        BCloseFormArsip2 = new javax.swing.JButton();
+        TXSearch = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         ProgramMenu = new javax.swing.JMenu();
         TutupMenuExit = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jTextField1.setText("jTextField1");
 
-        BCloseFormArsip.setText("Delete Terpilih");
-        BCloseFormArsip.addActionListener(new java.awt.event.ActionListener() {
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
+
+        DeleteSelectedButton.setText("Delete Terpilih");
+        DeleteSelectedButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BCloseFormArsipActionPerformed(evt);
+                DeleteSelectedButtonActionPerformed(evt);
             }
         });
 
@@ -98,11 +121,11 @@ private void load_table(){
 
             },
             new String [] {
-                "ID ", "ID BPJS", "NAMA PASIEN", "JENIS KELAMIN", "STATUS", "TANGGAL LAHIR", "TEMPAT LAHIR", "NO TELP", "ALAMAT", "HAPUS"
+                "ID ", "ID BPJS", "NAMA PASIEN", "JENIS KELAMIN", "STATUS", "UMUR", "TANGGAL LAHIR", "TEMPAT LAHIR", "NO TELP", "ALAMAT"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false, false, false
@@ -117,27 +140,39 @@ private void load_table(){
             }
         });
         tableArsip.getTableHeader().setReorderingAllowed(false);
+        tableArsip.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableArsipMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tableArsip);
         if (tableArsip.getColumnModel().getColumnCount() > 0) {
             tableArsip.getColumnModel().getColumn(0).setMaxWidth(30);
-            tableArsip.getColumnModel().getColumn(9).setMaxWidth(50);
+            tableArsip.getColumnModel().getColumn(5).setMaxWidth(50);
         }
 
-        jButton2.setText("Export Tabel");
+        ExportButton.setText("Export Tabel");
 
-        jButton3.setText("Edit Terpilih");
+        ShowButton.setText("Tampilkan Terpilih");
 
-        jButton4.setText("Tampilkan Terpilih");
-
-        BCloseFormArsip1.setText("Tutup Form Arsip");
-        BCloseFormArsip1.addActionListener(new java.awt.event.ActionListener() {
+        LoadArsipButton.setText("Load Data");
+        LoadArsipButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BCloseFormArsip1ActionPerformed(evt);
+                LoadArsipButtonActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
         jLabel1.setText("ARSIP");
+
+        jLabel2.setText("CARI DATA PASIEN");
+
+        BCloseFormArsip2.setText("Tutup Form Arsip");
+        BCloseFormArsip2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BCloseFormArsip2ActionPerformed(evt);
+            }
+        });
 
         ProgramMenu.setText("Program");
 
@@ -159,52 +194,55 @@ private void load_table(){
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1157, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BCloseFormArsip, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BCloseFormArsip1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addGap(226, 226, 226)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(TXSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(117, 117, 117)
+                .addComponent(ShowButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ExportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(DeleteSelectedButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(LoadArsipButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(BCloseFormArsip2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 195, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(BCloseFormArsip, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(BCloseFormArsip1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(61, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TXSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ShowButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ExportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DeleteSelectedButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BCloseFormArsip2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LoadArsipButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BCloseFormArsipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCloseFormArsipActionPerformed
-        
-        this.dispose(); //Menutup Form
-        
-    }//GEN-LAST:event_BCloseFormArsipActionPerformed
+    private void DeleteSelectedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteSelectedButtonActionPerformed
+      
+    }//GEN-LAST:event_DeleteSelectedButtonActionPerformed
 
     private void TutupMenuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TutupMenuExitActionPerformed
         
@@ -212,9 +250,32 @@ private void load_table(){
         
     }//GEN-LAST:event_TutupMenuExitActionPerformed
 
-    private void BCloseFormArsip1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCloseFormArsip1ActionPerformed
+    private void LoadArsipButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadArsipButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BCloseFormArsip1ActionPerformed
+        load_table();
+    }//GEN-LAST:event_LoadArsipButtonActionPerformed
+
+    private void BCloseFormArsip2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCloseFormArsip2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BCloseFormArsip2ActionPerformed
+
+    private void tableArsipMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableArsipMouseClicked
+        // TODO add your handling code here:
+        ExportButton.setEnabled(false);
+        LoadArsipButton.setEnabled(false);
+        DeleteSelectedButton.setEnabled(true);
+        BCloseFormArsip2.setEnabled(true);
+        ShowButton.setEnabled(true);
+        int baris = tableArsip.rowAtPoint(evt.getPoint());
+        
+    
+    }//GEN-LAST:event_tableArsipMouseClicked
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+        ExportButton.setEnabled(true);
+        LoadArsipButton.setEnabled(true);
+    }//GEN-LAST:event_formMouseClicked
 
     /**
      * @param args the command line arguments
@@ -252,16 +313,19 @@ private void load_table(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BCloseFormArsip;
-    private javax.swing.JButton BCloseFormArsip1;
+    private javax.swing.JButton BCloseFormArsip2;
+    private javax.swing.JButton DeleteSelectedButton;
+    private javax.swing.JButton ExportButton;
+    private javax.swing.JButton LoadArsipButton;
     private javax.swing.JMenu ProgramMenu;
+    private javax.swing.JButton ShowButton;
+    private javax.swing.JTextField TXSearch;
     private javax.swing.JMenuItem TutupMenuExit;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tableArsip;
     // End of variables declaration//GEN-END:variables
 }
