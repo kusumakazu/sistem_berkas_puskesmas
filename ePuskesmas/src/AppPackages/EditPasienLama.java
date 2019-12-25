@@ -4,42 +4,50 @@
  * and open the template in the editor.
  */
 package AppPackages;
-
-import AppPackages.configDB;
+import javax.swing.*;
+import java.util.*;
+import java.io.*;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import AppPackages.configDB;
 
-/*
+ /*
  *
  * @author Master
  */
-public class AddPendaftaranPasien extends javax.swing.JFrame {
-
+public class EditPasienLama extends javax.swing.JFrame {
+    
     Connection con;
     Statement stat;
-    String sql, kelas;
+    String sql,kelas;
     ResultSet res;
-    Date jdc = new Date();
-
+    Date jdc=new Date();
+   
+    
     /**
      * Creates new form AddPendaftaranPasien
      */
-    public AddPendaftaranPasien() {
+    public EditPasienLama() {
         initComponents();
         configDB k = new configDB();
         k.config();
-        con = k.con;
-        stat = k.stm;
+        con=k.con;
+        stat=k.stm;
         this.setLocationRelativeTo(null);
-        kosong();
-        showJK.setEditable(false); // disable teks field
-        showStatus.setEditable(false); // disable teks field
+        kosong();  
+        showJK.setEditable(false);
+        showStatus.setEditable(false);
     }
-
-    private void kosong() {
+    private void loadFromArsip(){
+  
+    }
+   private void kosong(){
         TXnamaLengkap.setText("");
         TXbpjs.setText("");
         TXumurPasien.setText("");
@@ -47,9 +55,58 @@ public class AddPendaftaranPasien extends javax.swing.JFrame {
         TXtanggalLahir.setText("");
         TXtelp.setText("");
         TXAlamat.setText("");
-
+        
     }
-
+   /*public void update(){
+   Statement stat;
+   ;
+     // Jika Data Belum dipilih
+  if (jTable1.getSelectedRow()<0){
+    JOptionPane.showMessageDialog(this, "Pilih Data Pada Tabel ","Perhatian",JOptionPane.WARNING_MESSAGE);
+    } else {
+    
+            if (jRadioButton1.isSelected()){
+            jenis_kelamin = "Cewek";
+            } else if (jRadioButton2.isSelected()){
+            jenis_kelamin = "Cowok";
+            }
+            
+   configDB perbarui = new configDB();
+        
+      try{
+       stat =  perbarui.config().createStatement();
+       try{
+         String sql = "UPDATE data SET id_pasien = ?, nama_pasien = ?, id_bpjs = ? ,jk_pasien = ? ,Status_pasien = ? ,umur_pasien = ? ,tpl_pasien = ? ,tgl_pasien = ? ,telp_pasien = ? ,alamat_pasien = ? WHERE id=?";
+            
+            PreparedStatement prepare = perbarui.koneksi().prepareStatement(sql);
+            prepare.setString(1, TXnamaLengkap.getText());
+            prepare.setString(2, TXbpjs.getText());
+            prepare.setString(3, showJK.getText());
+            prepare.setString(4, showStatus.getText());
+            prepare.setString(5, TXumurPasien.getText());
+            prepare.setString(6, TXtempatLahir.getText());
+            prepare.setString(7, TXtanggalLahir.getText());
+            prepare.setString(8, TXtelp.getText());
+            prepare.setString(9, TXAlamat.getText());
+            
+            prepare.executeUpdate(); 
+           
+            JOptionPane.showMessageDialog(this, "Data Berhasil di update","Informasi",JOptionPane.INFORMATION_MESSAGE);
+            
+       } catch (SQLException e){
+       JOptionPane.showMessageDialog(this, "gagal di update",null,JOptionPane.ERROR_MESSAGE);
+       }
+       
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(this, "gagal di koneksi database",null,JOptionPane.ERROR_MESSAGE);
+        
+        }
+    
+  }
+    }
+   */
+   
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -322,24 +379,13 @@ public class AddPendaftaranPasien extends javax.swing.JFrame {
     }//GEN-LAST:event_TXnamaLengkapActionPerformed
 
     private void BSubmitPasienSelesaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSubmitPasienSelesaiActionPerformed
-        // Menyimpan Ke Database
-        if (TXnamaLengkap.getText().equals("") || TXumurPasien.getText().equals("") || TXtempatLahir.getText().equals("") || TXtanggalLahir.getText().equals("") || TXAlamat.getText().equals("") || TXbpjs.getText().equals("") || showJK.getText().equals("") || showStatus.getText().equals("") || TXtelp.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "LENGKAPI SEMUA DATA!");
-        } else {
-            try {
-                String sql = "INSERT INTO pasien_tb VALUES (null,'" + TXnamaLengkap.getText() + "','" + TXbpjs.getText() + "','" + showJK.getText() + "','" + showStatus.getText() + "','" + TXumurPasien.getText() + "','" + TXtempatLahir.getText() + "','" + TXtanggalLahir.getText() + "','" + TXtelp.getText() + "','" + TXAlamat.getText() + "')";
-                stat.executeUpdate(sql);
 
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Tambah  DataGAGAL! " + e.getMessage());
-            }
-            JOptionPane.showMessageDialog(null, "Tambah  Data Berhasil!");
-            this.dispose();
+       
     }//GEN-LAST:event_BSubmitPasienSelesaiActionPerformed
-    }
-    private void BKembaliPasienExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BKembaliPasienExitActionPerformed
 
-        this.dispose(); // Keluar dari Form
+    private void BKembaliPasienExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BKembaliPasienExitActionPerformed
+       
+       this.dispose(); // Keluar dari Form
 
     }//GEN-LAST:event_BKembaliPasienExitActionPerformed
 
@@ -348,34 +394,34 @@ public class AddPendaftaranPasien extends javax.swing.JFrame {
     }//GEN-LAST:event_TXbpjsActionPerformed
 
     private void comboJKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboJKActionPerformed
-        // Menampilkan teks dari combo box
+        // TODO add your handling code here:
         String jktext;
-        jktext = (String) comboJK.getSelectedItem();
+        jktext =(String)comboJK.getSelectedItem();
         showJK.setText(jktext);
     }//GEN-LAST:event_comboJKActionPerformed
 
     private void comboStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboStatusActionPerformed
-        // Menampilkan teks dari combo box
+        // TODO add your handling code here:
         String statusText;
-        statusText = (String) comboStatus.getSelectedItem();
+        statusText =(String)comboStatus.getSelectedItem();
         showStatus.setText(statusText);
     }//GEN-LAST:event_comboStatusActionPerformed
 
     private void showJKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showJKActionPerformed
         // TODO add your handling code here:
-
+        
     }//GEN-LAST:event_showJKActionPerformed
 
     private void showJKFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_showJKFocusGained
-        // disable teks field
-        showJK.setEditable(false);
-        showJK.setEnabled(false);
+        // TODO add your handling code here:
+         showJK.setEditable(false);
+         showJK.setEnabled(false);
     }//GEN-LAST:event_showJKFocusGained
 
     private void showStatusFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_showStatusFocusGained
-        // disable teks field
-        showStatus.setEditable(false);
-        showStatus.setEnabled(false);
+        // TODO add your handling code here:
+         showStatus.setEditable(false);
+         showStatus.setEnabled(false);
     }//GEN-LAST:event_showStatusFocusGained
 
     /**
@@ -395,20 +441,21 @@ public class AddPendaftaranPasien extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddPendaftaranPasien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPasienLama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddPendaftaranPasien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPasienLama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddPendaftaranPasien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPasienLama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddPendaftaranPasien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditPasienLama.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddPendaftaranPasien().setVisible(true);
+                new EditPasienLama().setVisible(true);
             }
         });
     }

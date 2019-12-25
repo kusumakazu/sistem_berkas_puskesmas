@@ -4,45 +4,108 @@
  * and open the template in the editor.
  */
 package AppPackages;
-import javax.swing.*;
-import java.util.*;
+
 import java.io.*;
+import java.util.Date;
+import javax.swing.table.DefaultTableModel;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
-import AppPackages.config;
-
 /**
  *
  * @author Master
  */
-
 public class MenuArsip extends javax.swing.JFrame {
-Connection con;
+
+    Connection con;
     Statement stat;
-    String sql,kelas;
+    String sql, kelas;
     ResultSet res;
-    Date jdc=new Date();
+    Date jdc = new Date();
+    PreparedStatement prepare;
     /**
      * Creates new form MenuArsip
      */
     public MenuArsip() {
         initComponents();
         load_table();
-        config k = new config();
+        configDB k = new configDB();
         k.config();
-        con=k.con;
-        stat=k.stm;
+        con = k.con;
+        stat = k.stm;
         this.setLocationRelativeTo(null);
+        
     }
 
-private void load_table(){
+    private void simpan() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/pasien_db", "root", "");
+            Statement statement = con.createStatement();
+
+            FileOutputStream fileOut;
+            // Hasil Export
+            fileOut = new FileOutputStream("D:/export.xls");
+            HSSFWorkbook workbook = new HSSFWorkbook();
+            HSSFSheet worksheet = workbook.createSheet("Sheet 0");
+
+            // Nama Field
+            Row row1 = worksheet.createRow((short) 0);
+            row1.createCell(0).setCellValue("ID");
+            row1.createCell(1).setCellValue("ID BPJS");
+            row1.createCell(2).setCellValue("Nama Pasien");
+            row1.createCell(3).setCellValue("Jenis Kelamin");
+            row1.createCell(4).setCellValue("Status");
+            row1.createCell(5).setCellValue("Umur");
+            row1.createCell(6).setCellValue("Tanggal Lahir");
+            row1.createCell(7).setCellValue("Tempat Lahir");
+            row1.createCell(8).setCellValue("No Telepon");
+            row1.createCell(9).setCellValue("Alamat");
+
+            Row row2;
+            ResultSet rs = statement.executeQuery("SELECT * FROM pasien_tb");
+            while (rs.next()) {
+                int a = rs.getRow();
+                row2 = worksheet.createRow((short) a);
+
+                row2.createCell(0).setCellValue(rs.getString(1));
+                row2.createCell(1).setCellValue(rs.getString(2));
+                row2.createCell(2).setCellValue(rs.getString(3));
+                row2.createCell(3).setCellValue(rs.getString(4));
+                row2.createCell(4).setCellValue(rs.getString(5));
+                row2.createCell(5).setCellValue(rs.getString(6));
+                row2.createCell(6).setCellValue(rs.getString(7));
+                row2.createCell(7).setCellValue(rs.getString(8));
+                row2.createCell(8).setCellValue(rs.getString(9));
+                row2.createCell(9).setCellValue(rs.getString(10));
+            }
+            workbook.write(fileOut);
+            fileOut.flush();
+            fileOut.close();
+            rs.close();
+            statement.close();
+            con.close();
+            System.out.println("Export Success");
+        } catch (ClassNotFoundException e) {
+            System.out.println(e);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } catch (IOException ioe) {
+            System.out.println(ioe);
+        } finally {
+            JOptionPane.showMessageDialog(null, "Export Berhasil!!!, silahkan Cek");
+        }
+
+    }
+
+    private void load_table() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID");
         model.addColumn("ID BPJS");
@@ -55,11 +118,11 @@ private void load_table(){
         model.addColumn("NO Telepon");
         model.addColumn("Alamat");
         tableArsip.setModel(model);
-        
-        try{
+
+        try {
             String sql = "SELECT * FROM pasien_tb";
-            res=stat.executeQuery(sql);
-            while(res.next()){
+            res = stat.executeQuery(sql);
+            while (res.next()) {
                 model.addRow(new Object[]{
                     res.getString(1),
                     res.getString(2),
@@ -73,9 +136,41 @@ private void load_table(){
                     res.getString(10)});
             }
             tableArsip.setModel(model);
-        }catch(Exception e){            
+        } catch (Exception e) {
         }
     }
+    
+ public void hapus(){
+  PreparedStatement prep;
+  Statement state;
+  // Jika Data Belum dipilih
+  if (tableArsip.getSelectedRow()<0){
+    JOptionPane.showMessageDialog(this, "Pilih Data Pada Tabel ","Perhatian",JOptionPane.WARNING_MESSAGE);
+    } else {
+       
+     
+         try {                                         
+            
+            configDB hapus = new configDB();
+            state = hapus.con.createStatement();
+            String sql = "DELETE FROM data WHERE id=?";
+            
+            prep = hapus.config().prepareStatement(sql);
+            prep.setString(1, tableArsip.getValueAt(tableArsip.getSelectedRow(),0).toString());          
+            
+            try {
+                prepare.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Data Berhasil di Hapus",null,JOptionPane.INFORMATION_MESSAGE);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "hapus data gagal",null,JOptionPane.ERROR_MESSAGE);
+            }
+            } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "koneksi gagal",null,JOptionPane.WARNING_MESSAGE);
+            }
+        }         
+ }
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -152,8 +247,18 @@ private void load_table(){
         }
 
         ExportButton.setText("Export Tabel");
+        ExportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExportButtonActionPerformed(evt);
+            }
+        });
 
         ShowButton.setText("Tampilkan Terpilih");
+        ShowButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ShowButtonActionPerformed(evt);
+            }
+        });
 
         LoadArsipButton.setText("Load Data");
         LoadArsipButton.addActionListener(new java.awt.event.ActionListener() {
@@ -241,13 +346,14 @@ private void load_table(){
     }// </editor-fold>//GEN-END:initComponents
 
     private void DeleteSelectedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteSelectedButtonActionPerformed
-      
+    // TODO add your handling code here:
+    hapus();
     }//GEN-LAST:event_DeleteSelectedButtonActionPerformed
 
     private void TutupMenuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TutupMenuExitActionPerformed
-        
+
         this.dispose(); //Menutup Form
-        
+
     }//GEN-LAST:event_TutupMenuExitActionPerformed
 
     private void LoadArsipButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadArsipButtonActionPerformed
@@ -257,25 +363,35 @@ private void load_table(){
 
     private void BCloseFormArsip2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCloseFormArsip2ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_BCloseFormArsip2ActionPerformed
 
     private void tableArsipMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableArsipMouseClicked
         // TODO add your handling code here:
         ExportButton.setEnabled(false);
-        LoadArsipButton.setEnabled(false);
         DeleteSelectedButton.setEnabled(true);
         BCloseFormArsip2.setEnabled(true);
         ShowButton.setEnabled(true);
         int baris = tableArsip.rowAtPoint(evt.getPoint());
-        
-    
+
+
     }//GEN-LAST:event_tableArsipMouseClicked
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        // TODO add your handling code here:
+        // ketika menekan area form
+        // menampilkan tombol
         ExportButton.setEnabled(true);
         LoadArsipButton.setEnabled(true);
     }//GEN-LAST:event_formMouseClicked
+
+    private void ExportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportButtonActionPerformed
+        // Export Tabel
+        simpan();
+    }//GEN-LAST:event_ExportButtonActionPerformed
+
+    private void ShowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ShowButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -312,6 +428,7 @@ private void load_table(){
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BCloseFormArsip2;
     private javax.swing.JButton DeleteSelectedButton;
@@ -326,6 +443,6 @@ private void load_table(){
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTable tableArsip;
+    public javax.swing.JTable tableArsip;
     // End of variables declaration//GEN-END:variables
 }

@@ -200,6 +200,9 @@
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableArsipMouseClicked"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -207,11 +210,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Export Tabel"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ExportButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="ShowButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Tampilkan Terpilih"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ShowButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="LoadArsipButton">
       <Properties>
