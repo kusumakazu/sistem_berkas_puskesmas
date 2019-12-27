@@ -5,7 +5,6 @@
  */
 package AppPackages;
 
-import AppPackages.configDB;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -162,7 +161,7 @@ public class AddPendaftaranPasien extends javax.swing.JFrame {
             }
         });
 
-        comboJK.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select JK", "Laki -Laki", "Perempuan" }));
+        comboJK.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select JK", "Laki - Laki", "Perempuan" }));
         comboJK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboJKActionPerformed(evt);
@@ -331,7 +330,7 @@ public class AddPendaftaranPasien extends javax.swing.JFrame {
                 stat.executeUpdate(sql);
 
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Tambah  DataGAGAL! " + e.getMessage());
+                JOptionPane.showMessageDialog(null, "Tambah  Data GAGAL! " + e.getMessage());
             }
             JOptionPane.showMessageDialog(null, "Tambah  Data Berhasil!");
             this.dispose();

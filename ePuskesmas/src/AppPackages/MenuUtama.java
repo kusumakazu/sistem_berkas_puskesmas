@@ -16,6 +16,7 @@ public class MenuUtama extends javax.swing.JFrame {
      */
     public MenuUtama() {
         initComponents();
+
     }
 
     /**
