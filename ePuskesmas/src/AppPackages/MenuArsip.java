@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -31,6 +32,7 @@ public class MenuArsip extends javax.swing.JFrame {
     ResultSet res;
     Date jdc = new Date();
     PreparedStatement prepare;
+    ResultSetMetaData meta;
 
     /**
      * Creates new form MenuArsip
@@ -229,7 +231,6 @@ public class MenuArsip extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tableArsip = new javax.swing.JTable();
         ExportButton = new javax.swing.JButton();
-        ShowButton = new javax.swing.JButton();
         LoadArsipButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -255,11 +256,12 @@ public class MenuArsip extends javax.swing.JFrame {
         JT9 = new javax.swing.JTextField();
         BDeleteData1 = new javax.swing.JButton();
         EDITOR = new javax.swing.JLabel();
-        BDeleteData2 = new javax.swing.JButton();
+        ButtonDeleteData = new javax.swing.JButton();
         komboStatus = new javax.swing.JComboBox<>();
         komboJK = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         idPasien = new javax.swing.JLabel();
+        NewAddPasien = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         ProgramMenu = new javax.swing.JMenu();
         TutupMenuExit = new javax.swing.JMenuItem();
@@ -325,13 +327,6 @@ public class MenuArsip extends javax.swing.JFrame {
             }
         });
 
-        ShowButton.setText("Tampilkan Terpilih");
-        ShowButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ShowButtonActionPerformed(evt);
-            }
-        });
-
         LoadArsipButton.setText("Load Database");
         LoadArsipButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -391,10 +386,10 @@ public class MenuArsip extends javax.swing.JFrame {
         EDITOR.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
         EDITOR.setText("EDITOR ARSIP");
 
-        BDeleteData2.setText("Delete");
-        BDeleteData2.addActionListener(new java.awt.event.ActionListener() {
+        ButtonDeleteData.setText("Delete");
+        ButtonDeleteData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BDeleteData2ActionPerformed(evt);
+                ButtonDeleteDataActionPerformed(evt);
             }
         });
 
@@ -413,6 +408,13 @@ public class MenuArsip extends javax.swing.JFrame {
         });
 
         jLabel8.setText("ID Pasien : ");
+
+        NewAddPasien.setText("Daftar Baru");
+        NewAddPasien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NewAddPasienActionPerformed(evt);
+            }
+        });
 
         ProgramMenu.setText("Program");
 
@@ -459,8 +461,8 @@ public class MenuArsip extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(SearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(NewAddPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(LoadArsipButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -499,15 +501,15 @@ public class MenuArsip extends javax.swing.JFrame {
                             .addComponent(JT7)
                             .addComponent(JT8, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(ShowButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(BDeleteData2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(SearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22)
+                                .addComponent(ButtonDeleteData, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(BDeleteData1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(ExportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(ExportButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(LAlamat)
                                 .addGap(18, 18, 18)
@@ -533,7 +535,7 @@ public class MenuArsip extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BCloseFormArsip2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LoadArsipButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(NewAddPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(EDITOR)
                 .addGap(29, 29, 29)
@@ -552,12 +554,11 @@ public class MenuArsip extends javax.swing.JFrame {
                             .addComponent(LtempatLahir)
                             .addComponent(JT6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ShowButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(LtanggalLahir)
-                                .addComponent(JT7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(BDeleteData2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LtanggalLahir)
+                            .addComponent(JT7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ButtonDeleteData, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -587,23 +588,31 @@ public class MenuArsip extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private int statusSearching = 0;
     private void SearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchButtonActionPerformed
         // TODO add your handling code here:
-        statusSearching = 1;
-        DefaultTableModel model = new DefaultTableModel();
 
-        if (TXSearch.getText().isEmpty()) {
-            statusSearching = 0;
-        } else if (statusSearching == 1) {
+        statusSearching=1;
+        if(TXSearch.getText().isEmpty())
+        { statusSearching = 0;}
+        else if(statusSearching==1){
             DefaultTableModel table = new DefaultTableModel();
-            table.addColumn("Kode Barang");
-            table.addColumn("Nama Barang");
+            table.addColumn("ID");
+            table.addColumn("Nama Pasien");
+            table.addColumn("ID BPJS");
+            table.addColumn("Jenis Kelamin");
+            table.addColumn("Status");
+            table.addColumn("Umur");
+            table.addColumn("Tempat Lahir");
+            table.addColumn("Tanggal Lahir");
+            table.addColumn("NO Telepon");
+            table.addColumn("Alamat");
             String cari = TXSearch.getText();
-            try {
-                String sql = ("SELECT * FROM pasien_tb WHERE nama_pasien LIKE '% " + cari + "% ' OR id_bpjs LIKE '%" + cari +"% 'OR alamat_pasien LIKE '% " + cari + "% ");
-                res = stat.executeQuery(sql);
-                while (res.next()) {
-                    model.addRow(new Object[]{
+            try{
+                String sql = "SELECT * FROM pasien_tb WHERE nama_pasien LIKE '"+cari+"'OR id_bpjs LIKE '"+cari+"'OR alamat_pasien LIKE '"+cari+"'OR status_Pasien LIKE '"+cari+"' ORDER BY id_pasien";
+                res=stat.executeQuery(sql);
+                while(res.next()){
+                    table.addRow(new Object[]{
                         res.getString(1),
                         res.getString(2),
                         res.getString(3),
@@ -615,13 +624,13 @@ public class MenuArsip extends javax.swing.JFrame {
                         res.getString(9),
                         res.getString(10)});
                 }
-                tableArsip.setModel(model);
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(rootPane, "TIDAK ADA DATA YANG SESUAI!");
+                tableArsip.setModel(table);
+            }catch(SQLException ex){
+                JOptionPane.showMessageDialog(rootPane, "Tidak Ada Data yang Sesuai!");
 
             }
         }
-        
+
     }//GEN-LAST:event_SearchButtonActionPerformed
 
     private void TutupMenuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TutupMenuExitActionPerformed
@@ -646,7 +655,6 @@ public class MenuArsip extends javax.swing.JFrame {
         ExportButton.setEnabled(false);
         SearchButton.setEnabled(true);
         BCloseFormArsip2.setEnabled(true);
-        ShowButton.setEnabled(true);
         int baris = tableArsip.rowAtPoint(evt.getPoint());
 
         String IDPasien = tableArsip.getValueAt(baris, 0).toString();
@@ -693,12 +701,6 @@ public class MenuArsip extends javax.swing.JFrame {
         simpan();
     }//GEN-LAST:event_ExportButtonActionPerformed
 
-    private void ShowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowButtonActionPerformed
-        // TODO add your handling code here:
-        visibilitasTrue();
-
-    }//GEN-LAST:event_ShowButtonActionPerformed
-
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // Export Tabel
         simpan();
@@ -714,10 +716,10 @@ public class MenuArsip extends javax.swing.JFrame {
         saveUpdate();
     }//GEN-LAST:event_BDeleteData1ActionPerformed
 
-    private void BDeleteData2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDeleteData2ActionPerformed
+    private void ButtonDeleteDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDeleteDataActionPerformed
         // TODO add your handling code here:
         hapus();
-    }//GEN-LAST:event_BDeleteData2ActionPerformed
+    }//GEN-LAST:event_ButtonDeleteDataActionPerformed
 
     private void komboStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_komboStatusActionPerformed
         // Menampilkan teks dari combo box
@@ -732,12 +734,17 @@ public class MenuArsip extends javax.swing.JFrame {
         JKText = (String) komboJK.getSelectedItem();
         JT3.setText(JKText);
     }//GEN-LAST:event_komboJKActionPerformed
-    private int statusSearching = 0;
+
     private void TXSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXSearchKeyPressed
         // TODO add your handling code here:
-        
-        
+
+
     }//GEN-LAST:event_TXSearchKeyPressed
+
+    private void NewAddPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewAddPasienActionPerformed
+        // TODO add your handling code here:
+        new AddPendaftaranPasien().setVisible(true);
+    }//GEN-LAST:event_NewAddPasienActionPerformed
 
     /**
      * @param args the command line arguments
@@ -778,7 +785,7 @@ public class MenuArsip extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BCloseFormArsip2;
     private javax.swing.JButton BDeleteData1;
-    private javax.swing.JButton BDeleteData2;
+    private javax.swing.JButton ButtonDeleteData;
     private javax.swing.JLabel EDITOR;
     private javax.swing.JButton ExportButton;
     private javax.swing.JTextField JT1;
@@ -795,9 +802,9 @@ public class MenuArsip extends javax.swing.JFrame {
     private javax.swing.JLabel LtanggalLahir;
     private javax.swing.JLabel LtempatLahir;
     private javax.swing.JLabel LumurPasien;
+    private javax.swing.JButton NewAddPasien;
     private javax.swing.JMenu ProgramMenu;
     private javax.swing.JButton SearchButton;
-    private javax.swing.JButton ShowButton;
     private javax.swing.JTextField TXSearch;
     private javax.swing.JMenuItem TutupMenuExit;
     private javax.swing.JLabel idPasien;

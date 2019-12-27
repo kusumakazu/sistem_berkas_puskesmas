@@ -5,10 +5,12 @@
  */
 package AppPackages;
 
+
 /**
  *
  * @author Master
  */
+
 public class MenuUtama extends javax.swing.JFrame {
 
     /**
@@ -18,6 +20,7 @@ public class MenuUtama extends javax.swing.JFrame {
         initComponents();
 
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -134,36 +137,36 @@ public class MenuUtama extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ExitProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitProgramActionPerformed
-    
+
         System.exit(0); //program keluar
     }//GEN-LAST:event_ExitProgramActionPerformed
 
     private void RegistPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistPasienActionPerformed
-        
+
         new AddPendaftaranPasien().setVisible(true); // memulai instance form register pasien baru
     }//GEN-LAST:event_RegistPasienActionPerformed
 
     private void BKeluarMenuExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BKeluarMenuExitActionPerformed
-        
+
         System.exit(0); //program keluar
     }//GEN-LAST:event_BKeluarMenuExitActionPerformed
 
     private void BArsipMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BArsipMenuActionPerformed
-       
+
         new MenuArsip().setVisible(true); // memulai instance form Arsip
-        
+
     }//GEN-LAST:event_BArsipMenuActionPerformed
 
     private void BDaftarPasienMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BDaftarPasienMenuActionPerformed
-        
+
         new AddPendaftaranPasien().setVisible(true); // memulai instance form register pasien baru
-        
+
     }//GEN-LAST:event_BDaftarPasienMenuActionPerformed
 
     private void ArsipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ArsipActionPerformed
-      
+
         new MenuArsip().setVisible(true); // memulai instance form Arsip
-        
+
     }//GEN-LAST:event_ArsipActionPerformed
 
     /**

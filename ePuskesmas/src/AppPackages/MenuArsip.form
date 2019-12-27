@@ -87,8 +87,8 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="SearchButton" min="-2" pref="136" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="NewAddPasien" min="-2" pref="135" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="LoadArsipButton" min="-2" pref="135" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -135,16 +135,16 @@
                           <Component id="JT8" pref="213" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="ShowButton" min="-2" pref="140" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="BDeleteData2" min="-2" pref="140" max="-2" attributes="0"/>
+                              <Component id="SearchButton" min="-2" pref="136" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="ButtonDeleteData" min="-2" pref="140" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="BDeleteData1" min="-2" pref="140" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="ExportButton" min="-2" pref="136" max="-2" attributes="0"/>
+                              <Component id="ExportButton" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="LAlamat" min="-2" max="-2" attributes="0"/>
@@ -180,7 +180,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="BCloseFormArsip2" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                   <Component id="LoadArsipButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="SearchButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="NewAddPasien" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="14" max="32767" attributes="0"/>
               <Component id="EDITOR" min="-2" max="-2" attributes="0"/>
@@ -203,13 +203,11 @@
                           <Component id="JT6" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ShowButton" alignment="0" min="-2" pref="42" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="LtanggalLahir" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="JT7" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="BDeleteData2" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="LtanggalLahir" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="JT7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ButtonDeleteData" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="SearchButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                   </Group>
@@ -353,14 +351,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ExportButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="ShowButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Tampilkan Terpilih"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ShowButtonActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="LoadArsipButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Load Database"/>
@@ -477,12 +467,12 @@
         <Property name="text" type="java.lang.String" value="EDITOR ARSIP"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="BDeleteData2">
+    <Component class="javax.swing.JButton" name="ButtonDeleteData">
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BDeleteData2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonDeleteDataActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="komboStatus">
@@ -525,6 +515,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="idPasien">
+    </Component>
+    <Component class="javax.swing.JButton" name="NewAddPasien">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Daftar Baru"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NewAddPasienActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
